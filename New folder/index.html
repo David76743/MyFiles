@@ -1,0 +1,39 @@
+[9:49 PM, 6/4/2025] Chat Gpt: ```html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Merge Video and Audio</title>
+</head>
+<body>
+  <h2>Play Video with Replaced Audio</h2>
+
+  <label for="videoInput">Select Video:</label>
+  <input type="file" id="videoInput" accept="video/*"><br><br>
+
+  <label for="audioInput">Select Audio:</label>
+  <input type="file" id="audioInput" accept="audio/*"><br><br>
+
+  <button onclick="playMerged()">Play Merged</button>
+
+  <br><br>
+  <video id="videoPlayer" controls muted width="480"></video>
+  <audio id="audioPlayer"></audio>
+
+  <script>
+    function playMerged() {
+      const videoFile = document.getElementById('video…
+[9:50 PM, 6/4/2025] Chat Gpt: video.onplay = () => audio.play();
+      video.onpause = () => audio.pause();
+      video.onseeked = () => audio.currentTime = video.currentTime;
+      video.ontimeupdate = () => {
+        if (Math.abs(video.currentTime - audio.currentTime) > 0.3) {
+          audio.currentTime = video.currentTime;
+        }
+      };
+
+      video.play();
+    }
+  </script>
+</body>
+</html>
+```
